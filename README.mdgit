@@ -1,0 +1,1 @@
+# node initgit add README.mdgit commit -m first commitgit branch -M maingit remote add origin https://github.com/wyswhsl21/node.gitgit push -u origin main

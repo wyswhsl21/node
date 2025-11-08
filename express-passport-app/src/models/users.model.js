@@ -15,16 +15,30 @@ const userSchema = mongoose.Schema({
     unique: true,
   },
 });
+const saltRounds = 10;
+userSchema.pre('save', function (next) {
+  let user = this;
+  if (user.isModified('password')) {
+    //salt 생성
+    bcrypt.genSalt(saltRounds, function (err, salt) {
+      if (err) return next(err);
+
+      bcrypt.hash(user.password, salt, function (err, hash) {
+        if (err) return next(err);
+        user.password = hash;
+        next();
+      });
+    });
+  } else {
+    next();
+  }
+});
 
 userSchema.methods.comparePassword = function (plainPassword, cb) {
   //bcrypt compare
-  if (plainPassword === this.password) {
-    cb(null, true);
-  } else {
-    cb(null, false);
-  }
-  return cb({
-    error: 'error',
+  bcrypt.compare(plainPassword, this.password, function (err, isMatch) {
+    if (err) return cb(err);
+    cb(null, isMatch);
   });
 };
 const User = mongoose.model('User', userSchema);

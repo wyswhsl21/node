@@ -7,6 +7,9 @@ const usersRouter = require('./routes/users.router');
 const postsRouter = require('./routes/posts.router');
 
 const app = express();
+/** template engine 서버에 등록  */
+app.set * ('view engine', 'hbs');
+app.set('views', path.join(__dirname, 'views'));
 /**
  * app use는 미들웨어 생성
  * next 는 다음 미들웨어로 이동
@@ -19,6 +22,15 @@ app.use((req, res, next) => {
 
   console.log(`end : ${req.method} ${req.baseUrl} ${req.url} ${diffTime}`);
 });
+
+/** template engine 사용 */
+app.get('/', (req, res) => {
+  res.render('index', {
+    imageTitle: 'It is a forest',
+  });
+});
+
+
 
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);

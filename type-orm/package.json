@@ -1,0 +1,30 @@
+{
+   "name": "type-orm",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "scripts": {
+      "start": "ts-node src/index.ts",
+      "dev": "nodemon --exec ts-node src/index.ts",
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "typeorm": "typeorm-ts-node-commonjs"
+   },
+   "keywords": [],
+   "author": "",
+   "license": "ISC",
+   "dependencies": {
+      "express": "^5.1.0",
+      "morgan": "^1.10.1",
+      "nodemon": "^3.1.10",
+      "pg": "^8.14.1",
+      "reflect-metadata": "^0.2.2",
+      "typeorm": "0.3.27"
+   },
+   "devDependencies": {
+      "@types/node": "^24.10.0",
+      "ts-node": "^10.9.2",
+      "typescript": "^5.9.3",
+      "@types/express": "^5.0.5",
+      "@types/morgan": "^1.9.10"
+   }
+}
